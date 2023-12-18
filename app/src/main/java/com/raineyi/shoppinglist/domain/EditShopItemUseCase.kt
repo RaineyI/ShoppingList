@@ -1,8 +1,8 @@
 package com.raineyi.shoppinglist.domain
 
-class EditShopItemUseCase {
+class EditShopItemUseCase (private val shopListRepository: ShopListRepository) {
 
-    fun editShopItem(id: Int) {
-        TODO()
+    fun editShopItem(shopItemId: Int) {
+        shopListRepository.editShopItem(shopItemId)
     }
 }
