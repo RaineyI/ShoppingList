@@ -2,20 +2,22 @@ package com.raineyi.shoppinglist.data
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.recyclerview.widget.SortedList
 import com.raineyi.shoppinglist.domain.ShopItem
 import com.raineyi.shoppinglist.domain.ShopListRepository
 import java.lang.RuntimeException
+import kotlin.random.Random
 
 object ShoppingListRepositoryImpl: ShopListRepository {
-
-    private val shopList = mutableListOf<ShopItem>()
+    val shopListLD = MutableLiveData<List<ShopItem>>()
+    private val shopList = sortedSetOf<ShopItem>({o1, o2 -> o1.id.compareTo(o2.id)})
 
     private var autoIncrementId = 0
-    val shopListLD = MutableLiveData<List<ShopItem>>()
+
 
     init {
-         for(i in 0 until 10) {
-             val item = ShopItem("Name $i", i, true)
+         for(i in 0 until 100) {
+             val item = ShopItem("Name $i", i, Random.nextBoolean())
              addShopItem(item)
          }
     }
