@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.SortedList
 import com.raineyi.shoppinglist.domain.ShopItem
 import com.raineyi.shoppinglist.domain.ShopListRepository
 import java.lang.RuntimeException
+import kotlin.random.Random
 
 object ShoppingListRepositoryImpl: ShopListRepository {
     val shopListLD = MutableLiveData<List<ShopItem>>()
@@ -15,8 +16,8 @@ object ShoppingListRepositoryImpl: ShopListRepository {
 
 
     init {
-         for(i in 0 until 10) {
-             val item = ShopItem("Name $i", i, true)
+         for(i in 0 until 100) {
+             val item = ShopItem("Name $i", i, Random.nextBoolean())
              addShopItem(item)
          }
     }
