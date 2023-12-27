@@ -11,19 +11,14 @@ import java.lang.RuntimeException
 
 class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>() {
 
-    companion object {
-        const val VIEW_TYPE_DISABLED = 0
-        const val VIEW_TYPE_ENABLED = 1
-
-        const val MAX_POOL_SIZE = 15
-    }
-
     var shopList = listOf<ShopItem>()
         set(value) {
             field = value
             notifyDataSetChanged()
         }
 
+    var onShopItemLongClickListener: ((ShopItem) -> Unit)? = null
+    var onShopItemClickListener: ((ShopItem) -> Unit)? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ShopItemViewHolder {
         val layout = when(viewType) {
             VIEW_TYPE_ENABLED -> R.layout.item_shop_enabled
@@ -41,7 +36,12 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
         holder.tvCount.text = shopItem.count.toString()
 
         holder.view.setOnLongClickListener {
-            TODO()
+            onShopItemLongClickListener?.invoke(shopItem)
+            true
+        }
+
+        holder.view.setOnClickListener{
+            onShopItemClickListener?.invoke(shopItem)
         }
     }
 
@@ -60,5 +60,12 @@ class ShopListAdapter : RecyclerView.Adapter<ShopListAdapter.ShopItemViewHolder>
     class ShopItemViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         val tvName = view.findViewById<TextView>(R.id.tv_name)
         val tvCount = view.findViewById<TextView>(R.id.tv_count)
+    }
+
+    companion object {
+        const val VIEW_TYPE_DISABLED = 0
+        const val VIEW_TYPE_ENABLED = 1
+
+        const val MAX_POOL_SIZE = 15
     }
 }
