@@ -2,4 +2,6 @@
     <string name="app_name">Shopping List</string>
     <string name="add_new_shop_item">add new shop item</string>
     <string name="shop_item_list">shop item list</string>
+    <string name="name">Name:</string>
+    <string name="count">Count:</string>
 </resources>
