@@ -8,3 +8,4 @@ Tech Stack
 * XML
 * MVVM
 * RecyclerView (ListAdapter, DiffUtil)
+* Jetpack(dataBinding)
