@@ -2,12 +2,9 @@ package com.raineyi.shoppinglist.data
 
 import android.app.Application
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.recyclerview.widget.SortedList
+import androidx.lifecycle.map
 import com.raineyi.shoppinglist.domain.ShopItem
 import com.raineyi.shoppinglist.domain.ShopListRepository
-import java.lang.RuntimeException
-import kotlin.random.Random
 
 class ShoppingListRepositoryImpl(
     application: Application
@@ -32,7 +29,7 @@ class ShoppingListRepositoryImpl(
         return mapper.mapDbModelToEntity(dbModel)
     }
 
-    override fun getShopList(): LiveData<List<ShopItem>> {
-        TODO()
+    override fun getShopList(): LiveData<List<ShopItem>> = shopListDao.getShopList().map {
+        mapper.mapListDbModelToListEntity(it)
     }
 }

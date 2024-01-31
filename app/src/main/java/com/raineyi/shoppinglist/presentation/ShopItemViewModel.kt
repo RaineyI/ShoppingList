@@ -1,17 +1,18 @@
 package com.raineyi.shoppinglist.presentation
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.raineyi.shoppinglist.data.ShoppingListRepositoryImpl
 import com.raineyi.shoppinglist.domain.AddShopItemUseCase
 import com.raineyi.shoppinglist.domain.EditShopItemUseCase
 import com.raineyi.shoppinglist.domain.GetShopItemUseCase
 import com.raineyi.shoppinglist.domain.ShopItem
 
-class ShopItemViewModel : ViewModel() {
+class ShopItemViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = ShoppingListRepositoryImpl
+    private val repository = ShoppingListRepositoryImpl(application)
     private val getShopItemUseCase = GetShopItemUseCase(repository)
     private val addShopItemUseCase = AddShopItemUseCase(repository)
     private val editShopItemUseCase = EditShopItemUseCase(repository)
