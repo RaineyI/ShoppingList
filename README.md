@@ -7,5 +7,7 @@ Tech Stack
 * Kotlin
 * XML
 * MVVM
+* Room
+* Coroutines
 * RecyclerView (ListAdapter, DiffUtil)
-* Jetpack(dataBinding)
+* Jetpack (dataBinding)
