@@ -1,4 +1,4 @@
-# Ahopping List App
+# Shopping List App
 
 ### About
 Android application which help users to create and manage checklists for daily shopping.
