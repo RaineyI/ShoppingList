@@ -1,4 +1,4 @@
-package com.raineyi.shoppinglist.presentation
+package com.raineyi.shoppinglist.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,6 +9,7 @@ import com.raineyi.shoppinglist.R
 import com.raineyi.shoppinglist.databinding.ItemShopDisabledBinding
 import com.raineyi.shoppinglist.databinding.ItemShopEnabledBinding
 import com.raineyi.shoppinglist.domain.ShopItem
+import com.raineyi.shoppinglist.presentation.ShopItemViewHolder
 
 class ShopListAdapter : ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCallback()){
 

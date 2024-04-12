@@ -1,8 +1,10 @@
-package com.raineyi.shoppinglist.data
+package com.raineyi.shoppinglist.data.mappers
 
+import com.raineyi.shoppinglist.data.database.ShopItemDbModel
 import com.raineyi.shoppinglist.domain.ShopItem
+import javax.inject.Inject
 
-class ShopListMapper {
+class ShopListMapper @Inject constructor() {
 
     fun mapEntityToDbModel(shopItem: ShopItem) = ShopItemDbModel(
         id = shopItem.id,

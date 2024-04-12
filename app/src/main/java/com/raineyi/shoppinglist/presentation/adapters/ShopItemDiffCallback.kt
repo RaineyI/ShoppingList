@@ -1,4 +1,4 @@
-package com.raineyi.shoppinglist.presentation
+package com.raineyi.shoppinglist.presentation.adapters
 
 import androidx.recyclerview.widget.DiffUtil
 import com.raineyi.shoppinglist.domain.ShopItem

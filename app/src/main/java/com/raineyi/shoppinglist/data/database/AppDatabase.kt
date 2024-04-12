@@ -1,4 +1,4 @@
-package com.raineyi.shoppinglist.data
+package com.raineyi.shoppinglist.data.database
 
 import android.app.Application
 import androidx.room.Database

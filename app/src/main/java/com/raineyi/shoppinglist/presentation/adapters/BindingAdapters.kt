@@ -1,4 +1,4 @@
-package com.raineyi.shoppinglist.presentation
+package com.raineyi.shoppinglist.presentation.adapters
 
 import android.widget.EditText
 import androidx.databinding.BindingAdapter

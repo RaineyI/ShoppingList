@@ -1,17 +1,20 @@
-package com.raineyi.shoppinglist.data
+package com.raineyi.shoppinglist.data.repository
 
 import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
+import com.raineyi.shoppinglist.data.database.AppDatabase
+import com.raineyi.shoppinglist.data.database.ShopListDao
+import com.raineyi.shoppinglist.data.mappers.ShopListMapper
 import com.raineyi.shoppinglist.domain.ShopItem
 import com.raineyi.shoppinglist.domain.ShopListRepository
+import javax.inject.Inject
 
-class ShoppingListRepositoryImpl(
-    application: Application
+class ShoppingListRepositoryImpl @Inject constructor(
+    private val shopListDao: ShopListDao,
+    private val mapper: ShopListMapper
 ) : ShopListRepository {
 
-    private val shopListDao = AppDatabase.getInstance(application).shopListDao()
-    private val mapper = ShopListMapper()
     override suspend fun addShopItem(shopItem: ShopItem) {
         shopListDao.addShopItem(mapper.mapEntityToDbModel(shopItem))
     }
