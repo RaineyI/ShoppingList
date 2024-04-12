@@ -11,3 +11,4 @@ Tech Stack
 * Coroutines
 * RecyclerView (ListAdapter, DiffUtil)
 * Jetpack (dataBinding)
+* Dagger 2
