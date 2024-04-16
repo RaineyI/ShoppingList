@@ -1,7 +1,9 @@
 package com.raineyi.shoppinglist.presentation
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,9 +17,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputLayout
 import com.raineyi.shoppinglist.R
+import com.raineyi.shoppinglist.data.provider.ShopListProvider
 import com.raineyi.shoppinglist.databinding.FragmentShopItemBinding
 import com.raineyi.shoppinglist.domain.ShopItem
 import javax.inject.Inject
+import kotlin.concurrent.thread
 
 class ShopItemFragment : Fragment() {
 
@@ -123,15 +127,39 @@ class ShopItemFragment : Fragment() {
         binding.btSave.setOnClickListener {
             val name = binding.etName.text?.toString()
             val count = binding.etCount.text?.toString()
-            viewModel.editShopItem(name, count)
+//            viewModel.editShopItem(name, count)
+            thread {
+                context?.contentResolver?.update(
+                    Uri.parse("content://com.raineyi.shoppinglist/shop_items"),
+                    ContentValues().apply {
+                        put(ShopListProvider.ID_KEY, 0)
+                        put(ShopListProvider.NAME_KEY, binding.etName.text?.toString())
+                        put(ShopListProvider.COUNT_KEY, binding.etCount.text?.toString()?.toInt())
+                        put(ShopListProvider.ENABLE_KEY, true)
+                    },
+                    null,
+                    arrayOf(shopItemId.toString())
+                )
+            }
         }
     }
 
     private fun launchAddMode() {
         binding.btSave.setOnClickListener {
-            val name = binding.etName.text?.toString()
-            val count = binding.etCount.text?.toString()
-            viewModel.addShopItem(name, count)
+//            val name = binding.etName.text?.toString()
+//            val count = binding.etCount.text?.toString()
+//            viewModel.addShopItem(name, count)
+            thread {
+                context?.contentResolver?.insert(
+                    Uri.parse("content://com.raineyi.shoppinglist/shop_items"),
+                    ContentValues().apply {
+                        put(ShopListProvider.ID_KEY, 0)
+                        put(ShopListProvider.NAME_KEY, binding.etName.text?.toString())
+                        put(ShopListProvider.COUNT_KEY, binding.etCount.text?.toString()?.toInt())
+                        put(ShopListProvider.ENABLE_KEY, true)
+                    }
+                )
+            }
         }
     }
 
